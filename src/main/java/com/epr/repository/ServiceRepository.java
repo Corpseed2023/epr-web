@@ -28,4 +28,11 @@ public interface ServiceRepository extends JpaRepository<Services, Long> {
 
     boolean existsByTitleIgnoreCase(String title);
     boolean existsByTitleIgnoreCaseAndIdNot(String title, Long id);
+
+    // ADD THIS MISSING METHOD
+//    List<Services> findAllByIdInAndDeleteStatus(List<Long> ids, int deleteStatus);
+
+    // Alternative (cleaner & more efficient) using @Query - RECOMMENDED
+    @Query("SELECT s FROM Services s WHERE s.id IN :ids AND s.deleteStatus = :deleteStatus")
+    List<Services> findAllByIdInAndDeleteStatus(@Param("ids") List<Long> ids, @Param("deleteStatus") int deleteStatus);
 }

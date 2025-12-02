@@ -60,6 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         User currentUser = validateAndGetActiveUser(userId);
 
+
         String name = dto.getName().trim();
         String slug = dto.getSlug().trim().toLowerCase();
 
