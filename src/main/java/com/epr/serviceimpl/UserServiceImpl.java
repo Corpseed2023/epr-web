@@ -216,6 +216,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
     }
 
+
     private void mapRequestToEntity(User user, UserRequestDto dto) {
         user.setFullName(dto.getFullName());
         user.setEmail(dto.getEmail());
