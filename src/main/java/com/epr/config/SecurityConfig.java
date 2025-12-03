@@ -33,15 +33,17 @@ public class SecurityConfig {
                         .requestMatchers("/", "/login", "/register",
                                 "/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
 
-                        // Swagger / OpenAPI docs
+                        // Swagger / OpenAPI
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html",
                                 "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
 
                         // === PUBLIC API ENDPOINTS - NO AUTH REQUIRED ===
-                        .requestMatchers("/services/**").permitAll()           // This is what you need
-                        .requestMatchers("/api/public/**").permitAll()         // if you have other public APIs later
+                        .requestMatchers("/services/**").permitAll()
+                        .requestMatchers("/api/public/**").permitAll()
                         .requestMatchers("/api/**").permitAll()
-                        .requestMatchers("/blogs").permitAll()// optional - remove if you want to lock down other /api later
+
+                        // === BLOG ENDPOINTS - FULLY PUBLIC (including all sub-paths) ===
+                        .requestMatchers("/blogs", "/blogs/**").permitAll()
 
                         // Everything else requires authentication
                         .anyRequest().authenticated()
@@ -55,11 +57,18 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
                 )
-                // Disable CSRF only for APIs that are truly stateless or used by external clients
+                // Disable CSRF only for stateless/public APIs
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/api/**", "/services/**","/blogs")   // Add /services here too if needed
+                        .ignoringRequestMatchers(
+                                "/api/**",
+                                "/services/**",
+                                "/blogs",
+                                "/blogs/**"
+                        )
                 );
 
         return http.build();
     }
+
+
 }

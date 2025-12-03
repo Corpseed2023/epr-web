@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-// src/main/java/com/epr/entity/Category.java
-
 @Entity
 @Table(name = "categories")
 @Getter @Setter

@@ -251,6 +251,18 @@ public class BlogServiceImpl implements BlogService {
                 .collect(Collectors.toList());
     }
 
+
+    @Override
+    public List<BlogCustomerDto> findPublicBlogsByServiceId(Long serviceId) {
+        if (serviceId == null || serviceId <= 0) {
+            return List.of();
+        }
+        return blogRepository.findPublicByServiceId(serviceId)
+                .stream()
+                .map(this::toCustomerDto)
+                .collect(Collectors.toList());
+    }
+
     private void mapRequestToEntity(BlogRequestDto dto, Blogs entity) {
         entity.setTitle(dto.getTitle().trim());
         entity.setSlug(dto.getSlug().trim().toLowerCase());

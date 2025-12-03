@@ -101,7 +101,7 @@ public class ServiceController {
 
     // Add to your existing ServiceController or create a new PublicServiceController
 
-    @GetMapping("/public/subcategory/{subcategoryId}/services")
+    @GetMapping("/subcategory/{subcategoryId}/services")
     public ResponseEntity<List<ServiceResponseDto>> getActiveServicesBySubcategory(
             @PathVariable Long subcategoryId) {
 

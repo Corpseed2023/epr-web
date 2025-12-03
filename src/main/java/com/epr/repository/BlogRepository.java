@@ -83,9 +83,13 @@ public interface BlogRepository extends JpaRepository<Blogs, Long> {
     List<Blogs> findByShowHomeStatusAndDeleteStatusAndDisplayStatus(
             @Param("showHome") int showHomeStatus, int deleteStatus, int displayStatus);
 
-    /**
-     * Optional: Get blogs with related services (if needed later)
-     */
-    @Query("SELECT b FROM Blogs b LEFT JOIN FETCH b.services WHERE b.id = :id")
-    Optional<Blogs> findByIdWithServices(@Param("id") Long id);
+
+    @Query("SELECT b FROM Blogs b JOIN b.services s " +
+            "WHERE s.id = :serviceId " +
+            "AND b.deleteStatus = 2 AND b.displayStatus = 1 " +
+            "ORDER BY b.postDate DESC")
+    List<Blogs> findPublicByServiceId(@Param("serviceId") Long serviceId);
+
+
+
 }

@@ -95,6 +95,13 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- AWS S3 -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.12.753</version>
+		</dependency>
+
 		<!-- Jakarta Validation API + Hibernate Validator (Required for @NotBlank, @Email, etc.) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

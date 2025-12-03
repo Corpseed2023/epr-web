@@ -38,7 +38,6 @@ public interface ServiceRepository extends JpaRepository<Services, Long> {
 
 
 
-    // Add these to ServiceRepository.java
 
     Optional<Services> findBySlugIgnoreCaseAndDeleteStatusAndDisplayStatus(
             String slug, int deleteStatus, int displayStatus);

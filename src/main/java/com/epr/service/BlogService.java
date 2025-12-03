@@ -60,4 +60,5 @@ public interface BlogService {
      */
     List<BlogCustomerDto> findFeaturedPublicBlogs();
 
+    List<BlogCustomerDto> findPublicBlogsByServiceId(Long serviceId);
 }
