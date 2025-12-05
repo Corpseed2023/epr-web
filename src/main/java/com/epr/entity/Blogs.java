@@ -132,22 +132,8 @@ public class Blogs {
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BlogFaq> faqs = new ArrayList<>();
 
-    // === BUSINESS LOGIC ===
-    public void incrementVisit() {
-        this.visited++;
-    }
-
     public boolean isActive() {
         return deleteStatus == 2 && displayStatus == 1;
     }
 
-    public void generateSlug() {
-        if (this.title != null) {
-            this.slug = this.title.toLowerCase()
-                    .replaceAll("[^a-z0-9\\s-]", "")
-                    .trim()
-                    .replaceAll("\\s+", "-")
-                    .replaceAll("-+", "-");
-        }
-    }
 }
